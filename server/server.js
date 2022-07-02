@@ -25,7 +25,7 @@ app.use(morgon('dev'));
 app.use(bodyParser.json({ limit: '5mb', type: 'application/json' }));
 //app.use(cors());
 
-app.use(cors({origin: process.env.CLIENT_URL}));
+app.use(cors({origin: '*'}));
 
 
 app.use('/api', authRoutes);

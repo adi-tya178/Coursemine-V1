@@ -7,9 +7,9 @@ import { isAuth } from '../helper/auth';
 import Router from 'next/router';
 const Register = () => {
     const [state, setState] = useState({
-        name: 'Ryan',
-        email: 'ryan@gmail.com',
-        password: 'rrrrrr',
+        name: '',
+        email: '',
+        password: '',
         error: '',
         success: '',
         buttonText: 'Register',

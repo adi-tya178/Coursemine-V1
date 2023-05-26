@@ -36,7 +36,7 @@ exports.create = (req, res) => {
     let category = new Category({ name, content, slug });
 
     const params = {
-        Bucket: 'webtogether192022',
+        Bucket: 'webtogether52023',
         Key: `category/${uuidv4()}.${type}`,
         Body: base64Data,
         ACL: 'public-read',
@@ -134,7 +134,7 @@ exports.update = (req, res) => {
         if (image) {
             // remove the existing image from s3 before uploading new/updated one
             const deleteParams = {
-                Bucket: 'webtogether192022',
+                Bucket: 'webtogether52023',
                 Key: `${updated.image.key}`
             };
 
@@ -145,7 +145,7 @@ exports.update = (req, res) => {
 
             // handle upload image
             const params = {
-                Bucket: 'webtogether192022',
+                Bucket: 'webtogether52023',
                 Key: `${uuidv4()}.${type}`,
                 Body: base64Data,
                 ACL: 'public-read',
@@ -187,12 +187,12 @@ exports.remove = (req, res) => {
             })
         }
         const deleteParams = {
-            Bucket: 'webtogether192022',
+            Bucket: 'webtogether52023',
             Key: `${data.image.key}`
         };
 
         s3.deleteObject(deleteParams, function(err, data) {
-            if (err) console.log('S3 DELETE ERROR DUING DELETING', err);
+            if (err) console.log('S3 DELETE ERROR DURING DELETING', err);
             else console.log('S3 DELETED DURING DELETED', data); // deleted
         });
 

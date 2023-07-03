@@ -202,3 +202,54 @@ exports.popularInCategory = (req, res) => {
     })
 
 }
+
+
+exports.comment = async (req, res) => {
+    const {id} = req.params
+    const comment = req.body.comment
+    let doc = await Link.findOneAndUpdate({_id : id},
+        { $push: {comment: {
+            text: comment,
+            created: Date.now()
+        } } },{upsert:true,new: true}
+    ).exec((error,comment)=> {
+        if(err)
+            {
+                return res.status(400).json({
+                    error: 'Links not found'
+                })
+            }
+
+            res.json(comment)
+    })
+    //return doc;
+//     let doc = await Link.findOneAndUpdate({id}, {$push: {comment: "this video is good"}}, (err, success) => {
+//     console.log("ERROR",JSON.stringify(err))
+//     console.log("DATA",JSON.stringify(success))
+//     return success;
+//    })
+//    return doc;
+
+
+    // Link.findOneAndUpdate(
+    //     id,
+    // { $push: {comment: comment } },
+    // { new: true }
+
+
+
+    // ).exec((err, result) => {
+    //     if(err)
+    //     {
+    //         return res.status(400).json({
+    //             error: JSON.stringify(err)
+    //         })
+    //     }
+
+    //     res.json(result)
+    // }) 
+
+    
+
+
+}

@@ -49,7 +49,15 @@ const linkSchema = new mongoose.Schema({
     clicks: {
     type: Number,
     default: 0
+    },
+
+    comment: [{
+        text: String,
+        created: { type: Date, default: Date.now }
+
     }
+
+    ]
 
  
 
